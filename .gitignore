@@ -1,0 +1,6 @@
+.ionide
+src/CLang.Client/bin
+src/CLang.Client/obj
+
+src/CLang.Server/bin
+src/CLang.Server/obj
