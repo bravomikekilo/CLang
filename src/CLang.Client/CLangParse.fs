@@ -1,8 +1,8 @@
 
-module CLangParse
+module ClangParse
 
 open FParsec
-open CLang
+open Clang
 
 type UserState = unit
 type Parser<'t> = Parser<'t, UserState>

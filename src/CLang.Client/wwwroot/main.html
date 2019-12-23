@@ -60,70 +60,41 @@
       </template>
 
       <template id="CLang">
-        <h1 class="title">
-          CLang interpreter
-        </h1>
-        <p>
-          <label for="src-box">源码窗口</label>
-          <textarea id="src-box"></textarea>
+        <div class="columns">
+          <div class="column">
 
-          <label for="res-box">响应窗口</label>
-          <textarea id="res-box"></textarea>
-          <button onclick="${Parse}">Parse</button>
-        </p>
+            <h1>Tree View</h1>
+          </div>
+
+          <div class="column">
+            <h1>State View</h1>
+            <div id="state-container" class="box">
+              <div class="box state-box">State1</div>
+              <div class="box state-box">State2</div>
+              <div class="box state-box">State3</div>
+              <div class="box state-box">State4</div>
+            </div>
+
+          </div>
+
+          <div class="column">
+
+            <h1 class="title">
+              CLang interpreter
+            </h1>
+            <p>
+              <label for="src-box">源码窗口</label>
+              <textarea id="src-box" class="textarea is-primary has-fixed-size" bind="${ClangSource}" rows="10"></textarea>
+              <label for="res-box">响应窗口</label>
+              <textarea id="res-box" class="textarea is-warning has-fixed-size" bind="${ClangDiagnose}" rows="5" readonly></textarea>
+              <button class="button is-primary" onclick="${SubmitSource}">Parse</button>
+            </p>
+            ${AST}
+
+          </div>
+        </div>
       </template>
 
-      <template id="Data">
-        <h1 class="title">
-          Download data
-          <button class="button" onclick="${Reload}">Reload</button>
-        </h1>
-        <p>
-          Signed in as ${Username}.
-          <button class="button" onclick="${SignOut}">Sign out</button>
-        </p>
-        <table class="table is-fullwidth">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Published</th>
-              <th>ISBN</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${Rows}
-            <template id="EmptyData">
-              <tr><td colspan="4">Downloading book list...</td></tr>
-            </template>
-          </tbody>
-        </table>
-      </template>
-
-
-      <template id="SignIn">
-        <h1 class="title">Sign in</h1>
-        <form onsubmit="${SignIn}">
-          <div class="field">
-            <label class="label">Username</label>
-            <div class="control">
-              <input class="input" bind="${Username}" />
-            </div>
-          </div>
-          <div class="field">
-            <label class="label">Password</label>
-            <div class="control">
-              <input class="input" type="password" bind="${Password}" />
-            </div>
-          </div>
-          <div class="field">
-            <div class="control">
-              <input type="submit" value="Sign in" />
-            </div>
-          </div>
-          ${ErrorNotification}
-        </form>
-      </template>
 
       <template id="ErrorNotification">
         <div class="notification is-warning">
@@ -135,4 +106,3 @@
     </section>
   </div>
 </div>
-

@@ -1,4 +1,4 @@
-module CLang
+module Clang
 
 exception InvalidProgramException of string
 exception ExecuteException of string

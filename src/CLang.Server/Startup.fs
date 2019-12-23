@@ -18,13 +18,8 @@ type Startup() =
         services.AddMvc().AddRazorRuntimeCompilation() |> ignore
         services.AddServerSideBlazor() |> ignore
         services
-            .AddAuthorization()
-            .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie()
-                .Services
-            .AddRemoting<BookService>()
 #if DEBUG
-            .AddHotReload(templateDir = __SOURCE_DIRECTORY__ + "/../CLang.Client")
+            // .AddHotReload(templateDir = __SOURCE_DIRECTORY__ + "/../CLang.Client")
 #endif
         |> ignore
 
@@ -38,7 +33,7 @@ type Startup() =
             .UseClientSideBlazorFiles<Client.Main.MyApp>()
             .UseEndpoints(fun endpoints ->
 #if DEBUG
-                endpoints.UseHotReload()
+                // endpoints.UseHotReload()
 #endif
                 endpoints.MapBlazorHub() |> ignore
                 endpoints.MapFallbackToPage("/_Host") |> ignore)

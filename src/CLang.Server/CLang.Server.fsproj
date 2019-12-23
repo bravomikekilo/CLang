@@ -4,7 +4,6 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BookService.fs" />
     <Compile Include="HostModel.fs" />
     <Compile Include="Startup.fs" />
   </ItemGroup>

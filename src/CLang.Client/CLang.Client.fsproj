@@ -6,6 +6,7 @@
   <ItemGroup>
     <Compile Include="CLang.fs" />
     <Compile Include="CLangParse.fs" />
+    <Compile Include="CLangRender.fs" />
     <Compile Include="Main.fs" />
     <Compile Include="Startup.fs" />
   </ItemGroup>

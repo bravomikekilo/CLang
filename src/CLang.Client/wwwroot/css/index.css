@@ -38,3 +38,33 @@ body {
   margin-right: auto;
   margin-bottom: 5px;
 }
+
+ul.tree  {
+  margin-left: 0em;
+  line-height: 1.5em;
+  list-style-type: none;
+}
+
+ul.tree > li:hover {
+  border-left: 1px solid gray;
+}
+
+li.tree:hover ~ li {
+  text-decoration: underline;
+}
+
+li.sub {
+  padding-left: 1em;
+}
+
+#state-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 150px;
+}
+
+.box.state-box {
+  margin: 0.25rem;
+  margin-bottom: 0.25rem;
+}
