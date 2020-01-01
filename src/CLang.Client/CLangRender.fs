@@ -7,6 +7,37 @@ let treeul args = ul [attr.``class`` "tree"] args
 let treeli args = li [attr.``class`` "tree"] args
 let subli args = li [attr.``class`` "sub"] args
 
+let leafli args = li [attr.``class`` "leaf"] args
+
+let cInstName (inst: CInst): string =
+    match inst with
+    | Expr expr ->
+      match expr with
+      | Literal x -> "Literal " + string x
+      | Var x -> "Var " + x
+      | Minus _ -> "Minus"
+      | Add _ -> "Add"
+      | Mult _ -> "Mult"
+      | Div _ -> "Div"
+      | Inverse _ -> "Inv"
+      | Gt _ -> "Greater"
+      | Gq _ -> "GreaterEq"
+      | Lt _ -> "Less"
+      | Lq _ -> "LessEq"
+      | Eq _ -> "Equal"
+      | Nq _ -> "NotEq"
+      | Apply _ -> "Apply"
+    | Stmt stmt ->
+      match stmt with
+      | Decl x -> "Decl " + x
+      | Assign (ident=ident; expr=expr) -> "Assign " + ident
+      | Ret -> "Ret"
+      | RetVal _ -> "RetVal"
+      | If _ -> "If"
+      | While _ -> "While"
+      | Block _ -> "Block"
+      | Eval _ -> "Eval"
+
 let rec renderCExpr (expr: CExpr) =
     let renderOp name l r = treeul [
         treeli [text name]
@@ -43,7 +74,7 @@ let rec renderCStmt (stmt: CStmt) =
         treeli [text <| "Assign " + ident]
         subli [renderCExpr expr]
       ]
-    | Ret -> treeli [text "Ret"]
+    | Ret -> div [] [text "Ret"]
     | RetVal expr -> treeul [
         treeli [text "RetVal"]
         subli [renderCExpr expr]
@@ -64,7 +95,7 @@ let rec renderCStmt (stmt: CStmt) =
         treeul <| List.map (fun stmt -> subli [renderCStmt stmt]) stmts
       ]
     | Eval expr -> treeul [
-        treeli [text "Text"]
+        treeli [text "Eval"]
         subli [renderCExpr expr]
       ]
 

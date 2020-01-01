@@ -57,14 +57,29 @@ li.sub {
   padding-left: 1em;
 }
 
-#state-container {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 150px;
+#main-section {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
 }
 
-.box.state-box {
-  margin: 0.25rem;
-  margin-bottom: 0.25rem;
+.acc-container > .acc-item > .acc-content {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.acc-item:hover {
+  color: blue;
+}
+
+.acc-item:hover > .acc-content {
+  max-height: 1000px;
+}
+
+.main-panel {
+  height: 100%;
+}
+
+.acc-content {
+  transition: 1s;
 }

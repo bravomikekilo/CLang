@@ -4,9 +4,14 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Either.fs" />
     <Compile Include="CLang.fs" />
+    <Compile Include="CLangLint.fs" />
     <Compile Include="CLangParse.fs" />
     <Compile Include="CLangRender.fs" />
+    <Compile Include="StateList.fs" />
+    <Compile Include="TreeView.fs" />
+    <Compile Include="StateView.fs" />
     <Compile Include="Main.fs" />
     <Compile Include="Startup.fs" />
   </ItemGroup>

@@ -23,7 +23,7 @@ let pExpr, pExprRef = createParserForwardedToRef<CExpr, unit>()
 let pFuncArgs : Parser<CExpr list> = parse {
     do! skipChar '('
     do! spaces
-    let! ret = sepBy pExpr (pchar ',' >>. spaces)
+    let! ret = sepBy pExpr (spaces .>> pchar ',' >>. spaces)
     do! spaces
     do! skipChar ')'
     return ret
@@ -188,8 +188,7 @@ let pWhile = parse {
 let pBlock = parse {
     do! skipChar '{'
     do! spaces
-    let! stmts = sepBy pStmt spaces
-    do! spaces
+    let! stmts = many (attempt pStmt .>> spaces)
     do! skipChar '}'
     return Block stmts
 }
@@ -201,7 +200,13 @@ let pEval = parse {
     return Eval expr
 }
 
-do pStmtRef := pBlock <|> pWhile <|> pIf <|> pRet <|> pDecl <|> attempt pAssign <|> pEval;
+do pStmtRef := attempt pBlock
+               <|> attempt pWhile
+               <|> attempt pIf
+               <|> attempt pRet
+               <|> attempt pDecl
+               <|> attempt pAssign
+               <|> pEval;
 
 
 let pFunc = parse {
@@ -211,20 +216,19 @@ let pFunc = parse {
     do! spaces
     do! skipChar '('
     do! spaces
-    let! args = sepBy pIdent spaces
+    let! args = sepBy (attempt pIdent) (spaces .>> pchar ',' >>. spaces)
     do! spaces
     do! skipChar ')'
     do! spaces
     do! skipChar '{'
     do! spaces
-    do! spaces
-    let! stmts = sepBy pStmt spaces
+    let! stmts = many (attempt pStmt .>> spaces)
     do! skipChar '}'
     return funcName, {args=args; body=stmts; hasRet=ret_type = "int"}
 }
 
 let pProgram = parse {
     do! spaces
-    let! funcs = sepBy pFunc spaces
+    let! funcs = many (pFunc .>> spaces)
     return funcs
 }
